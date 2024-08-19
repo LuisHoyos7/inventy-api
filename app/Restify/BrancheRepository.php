@@ -14,7 +14,7 @@ class BrancheRepository extends Repository
         return [
             id(),
             field('name')->rules('required'),
-            field('address')->nullable(), 
+        
         ];
     }
 }
