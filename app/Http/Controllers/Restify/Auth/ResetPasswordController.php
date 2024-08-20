@@ -12,6 +12,7 @@ class ResetPasswordController extends Controller
 {
     public function __invoke(Request $request)
     {
+        dd($request);
         $request->validate([
             'email' => 'required|email',
             'token' => 'required|string',
