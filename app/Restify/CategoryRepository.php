@@ -13,7 +13,7 @@ class CategoryRepository extends Repository
     {
         return [
             id(),
-            name
+            field('name'),
         ];
     }
 }
