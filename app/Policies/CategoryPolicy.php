@@ -32,7 +32,7 @@ class CategoryPolicy
 
     public function update(User $user, Category $model): bool
     {
-        return false;
+        return true;
     }
 
     public function updateBulk(User $user, Category $model): bool
@@ -47,6 +47,6 @@ class CategoryPolicy
 
     public function delete(User $user, Category $model): bool
     {
-        return false;
+        return true;
     }
 }

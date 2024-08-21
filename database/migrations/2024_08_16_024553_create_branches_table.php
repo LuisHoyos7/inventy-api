@@ -14,8 +14,11 @@ return new class extends Migration
         Schema::create('branches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
-          //  $table->foreignId('company_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('location')->nullable();
+            $table->foreignId('company_id')
+                ->nullable()
+                ->constrained()
+                ->onDeleteCascade();
             $table->timestamps();
         });
     }
