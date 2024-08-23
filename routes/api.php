@@ -36,3 +36,5 @@ Route::post('resetPassword', ResetPasswordController::class)
 Route::post('verify/{id}/{hash}', VerifyController::class)
     ->middleware('throttle:6,1')
     ->name('restify.verify');
+
+Restify::routes();
