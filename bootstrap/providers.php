@@ -2,7 +2,7 @@
 
 return [
     App\Providers\AppServiceProvider::class,
-    App\providers\RestifyServiceProvider::class,
+    App\Providers\RestifyServiceProvider::class,
 ];
 
 
