@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class InvoiceType extends Model
 {
-    public function article()
+    public function invoice()
     {
-        return $this->HasMany(Article::class);
+        return $this->hasMany(Invoice::class);
     }
 }
