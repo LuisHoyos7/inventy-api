@@ -17,15 +17,15 @@ class InvoiceRepository extends Repository
         return [
             id(),
 
-                
-              // Relación "muchos a uno" con el modelo InvoiceType
-             BelongsTo::make('Invoice Type', 'invoice_type', InvoiceTypeRepository::class),
-             
-             // Relación "muchos a uno" con el modelo User
-             BelongsTo::make('User', 'user', UserRepository::class),
-             
-             // Relación "uno a muchos" con el modelo InvoiceDetail
-             HasMany::make('Invoice Details', 'invoice_detail', InvoiceDetailRepository::class),
+
+            // Relación "muchos a uno" con el modelo InvoiceType
+            BelongsTo::make('Invoice Type', 'invoiceType', InvoiceTypeRepository::class),
+
+            // Relación "muchos a uno" con el modelo User
+            BelongsTo::make('User', 'user', UserRepository::class),
+
+            // Relación "uno a muchos" con el modelo InvoiceDetail
+            HasMany::make('Invoice Details', 'invoiceDetails', InvoiceDetailRepository::class),
         ];
     }
 }

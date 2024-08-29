@@ -16,9 +16,9 @@ class PriceListRepository extends Repository
         return [
             id(),
 
-            
-             // Relación "muchos a uno" con el modelo Article
-             BelongsTo::make('Article', 'article', ArticleRepository::class),
+
+            // Relación "muchos a uno" con el modelo Article
+            BelongsTo::make('Item', 'item', ItemRepository::class),
         ];
     }
 }

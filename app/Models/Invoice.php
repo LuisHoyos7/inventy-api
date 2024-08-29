@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
-    public function invoice_type()
+    public function invoiceType()
     {
         return $this->belongsTo(invoiceType::class);
     }
@@ -18,7 +18,7 @@ class Invoice extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function invoice_detail()
+    public function invoiceDetails()
     {
         return $this->hasMany(InvoiceDetail::class);
     }

@@ -5,11 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model
+class Item extends Model
 {
-    public function article_type()
+    protected $fillable = [
+        "name",
+        "description",
+        "barcode",
+        "initial_cost",
+        "category_id",
+    ];
+
+    public function itemType()
     {
-        return $this->belongsTo(ArticleType::class);
+        return $this->belongsTo(ItemType::class);
     }
 
     public function category()
@@ -17,15 +25,13 @@ class Article extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function price_list()
+    public function priceLists()
     {
         return $this->hasMany(PriceList::class);
     }
 
-    public function invoice_detail()
+    public function invoiceDetails()
     {
         return $this->hasMany(InvoiceDetail::class);
     }
-
-
 }

@@ -13,7 +13,6 @@ class UserRepository extends Repository
     {
         return [
             field('name')->rules('required'),
-
             field('email')->storingRules('required', 'unique:users')->messages([
                 'required' => 'This field is required.',
             ]),

@@ -2,23 +2,22 @@
 
 namespace App\Restify;
 
-use App\Models\InvoiceType;
+use App\Models\ItemType;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Binaryk\LaravelRestify\Repositories\Repository;
 use Binaryk\LaravelRestify\Fields\HasMany;
+use Binaryk\LaravelRestify\Filters\Matches;
 
-class InvoiceTypeRepository extends Repository
+class ItemTypeRepository extends Repository
 {
-    public static string $model = InvoiceType::class;
+    public static string $model = ItemType::class;
 
     public function fields(RestifyRequest $request): array
     {
         return [
             id(),
-
-
-            // Relación "uno a muchos" con el modelo Invoice
-            HasMany::make('Invoices', 'invoices', InvoiceRepository::class),
+            // Relación "uno a muchos" con el modelo Items
+            HasMany::make('Items', 'items', ItemRepository::class),
         ];
     }
 }

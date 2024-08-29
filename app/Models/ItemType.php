@@ -6,11 +6,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class ArticleType extends Model
+class ItemType extends Model
 {
-    public function article()
+    public function items()
     {
-        return $this->hasMany(Article::class);
+        return $this->hasMany(Item::class);
     }
-    
 }

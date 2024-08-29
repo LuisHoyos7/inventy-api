@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PriceList extends Model
 {
-    public function article()
+    public function item()
     {
-       return $this->belongsTo(Article::class);
+        return $this->belongsTo(Item::class);
     }
-
-    
 }
