@@ -17,6 +17,11 @@ class Company extends Model
         'name'
     ];
 
+    public function users(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+
     public function categories(): HasMany
     {
         return $this->hasMany(Category::class);
