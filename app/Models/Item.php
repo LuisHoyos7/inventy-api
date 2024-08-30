@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Item extends Model
 {
-    use HasFactory;
+    use HasFactory, HasCompany;
 
     protected $fillable = [
         "name",
@@ -17,11 +18,6 @@ class Item extends Model
         "initial_cost",
         "category_id",
     ];
-
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
 
     public function category(): BelongsTo
     {
