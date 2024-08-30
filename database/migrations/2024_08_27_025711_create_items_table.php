@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('barcode', 100);
             $table->decimal('initial_cost')->default(0);
             $table->foreignId('category_id')->constrained();
+            $table->foreignId('company_id')->constrained();
             $table->timestamps();
         });
     }

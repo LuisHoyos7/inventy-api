@@ -17,6 +17,7 @@ class Item extends Model
         "barcode",
         "initial_cost",
         "category_id",
+        "company_id",
     ];
 
     public function category(): BelongsTo
