@@ -2,38 +2,22 @@
 
 namespace App\Http\Controllers\Restify\Auth;
 
-use App\Models\User;
+use App\Http\Requests\RegisterUserRequest;
 use App\Models\Company;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(RegisterUserRequest $request)
     {
-        $request->validate([
-            'email' => ['required', 'email', 'max:255', 'unique:' . Config::get('config.auth.table', 'users')],
-            'password' => ['required', 'confirmed'],
-            'company_name' => 'required'
-        ]);
+        $inputs = $request->validated();
 
-        /**
-         * @var User|string $user
-         */
-        $model = config('restify.auth.user_model');
+        $company = Company::create(['name' => $inputs['company_name']]);
 
-        $user = $model::forceCreate([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
-
-        Company::create(['name' => $request->company_name]);
+        $user = $company->users()->create($inputs);
 
         return rest($user)->indexMeta([
-            'token' => $user->createToken('login')->plainTextToken,
+            'token' => $user->createToken('register')->plainTextToken,
         ]);
     }
 }
