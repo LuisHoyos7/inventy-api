@@ -26,4 +26,9 @@ class Company extends Model
     {
         return $this->hasMany(Branch::class);
     }
+
+    public function items(): HasMany
+    {
+        return $this->hasMany(Item::class);
+    }
 }
