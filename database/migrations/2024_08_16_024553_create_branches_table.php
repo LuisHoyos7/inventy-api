@@ -15,10 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('location')->nullable();
-            $table->foreignId('company_id')
-                ->nullable()
-                ->constrained()
-                ->onDeleteCascade();
+            $table->foreignId('company_id')->constrained()->onDeleteCascade();
             $table->timestamps();
         });
     }
