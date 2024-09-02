@@ -20,7 +20,10 @@ class ItemRepository extends Repository
             field('description')->rules('nullable', 'max:255'),
             field('barcode')->rules('required', 'min:3', 'max:100'),
             field('initial_cost')->rules('required', 'numeric'),
-            field('category_id')->rules('required', Rule::exists(Category::class, 'id')),
+            field('category_id')->rules('required', Rule::exists(Category::class, 'id'))->messages([
+                'required' => 'La categoría es requerida',
+                'exists' => 'La categoría escogida no existe.',
+            ]),
         ];
     }
 
