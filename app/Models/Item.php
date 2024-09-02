@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ItemType;
 use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,28 +16,26 @@ class Item extends Model
         "name",
         "description",
         "barcode",
+        'type',
         "initial_cost",
         "category_id",
         "company_id",
     ];
 
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'type' => ItemType::class,
+        ];
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function itemType()
-    {
-        return $this->belongsTo(ItemType::class);
-    }
-
-    public function priceLists()
-    {
-        return $this->hasMany(PriceList::class);
-    }
-
-    public function invoiceDetails()
-    {
-        return $this->hasMany(InvoiceDetail::class);
     }
 }
