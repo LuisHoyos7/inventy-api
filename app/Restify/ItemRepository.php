@@ -13,6 +13,7 @@ use Illuminate\Validation\Rule;
 class ItemRepository extends Repository
 {
     public static string $model = Item::class;
+    public static array $search = ['name', 'description', 'barcode'];
 
     public function fields(RestifyRequest $request): array
     {
