@@ -12,8 +12,7 @@ class CategoryRepository extends Repository
     public function fields(RestifyRequest $request): array
     {
         return [
-            id(),
-            field('name'),
+            field('name')->required(),
         ];
     }
 }

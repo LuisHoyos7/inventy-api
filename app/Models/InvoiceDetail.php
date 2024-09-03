@@ -12,8 +12,8 @@ class InvoiceDetail extends Model
         return $this->belongsTo(Invoice::class);
     }
 
-    public function article()
+    public function item()
     {
-        return $this->belongsTo(Article::class);
+        return $this->belongsTo(Item::class);
     }
 }

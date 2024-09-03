@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InvoiceType extends Model
 {
-    public function invoice()
+    public function invoices()
     {
         return $this->hasMany(Invoice::class);
     }

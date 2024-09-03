@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('branches', function (Blueprint $table) {
+        Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location')->nullable();
-            $table->foreignId('company_id')->constrained()->onDeleteCascade();
+            $table->string('description')->nullable();
+            $table->string('barcode', 100);
+            $table->string('type', 10);
+            $table->decimal('initial_cost')->default(0);
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('company_id')->constrained();
             $table->timestamps();
         });
     }
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('branches');
+        Schema::dropIfExists('items');
     }
 };

@@ -1,66 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## INVENTY API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistema de inventarios y facturación electrónica
 
-## About Laravel
+## 👓 Commits messages conventions
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+En Git, los mensajes de commit siguen ciertas convenciones para describir el propósito del cambio. Estas convenciones son especialmente útiles en proyectos grandes o colaborativos, ya que ayudan a mantener un historial de cambios claro y coherente. Aquí te explico qué significa cada uno de los tipos de commit que mencionas y cuándo usarlos, con ejemplos:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. **build**: Cambios que afectan el sistema de construcción o dependencias externas (ej., npm, make).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    - **Cuándo usarlo**: Cuando agregas o cambias dependencias, actualizas scripts de build, o modificas archivos de configuración de la compilación.
+    - **Ejemplo**:
+        - `build: update webpack to version 5`
+        - `build: add gulp task for deployment`
 
-## Learning Laravel
+2. **chore**: Cambios que no afectan el código de producción ni los tests, como actualizaciones de herramientas o ajustes en la configuración.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    - **Cuándo usarlo**: Para tareas de mantenimiento rutinarias que no modifican el comportamiento del código.
+    - **Ejemplo**:
+        - `chore: update npm dependencies`
+        - `chore: rename config files`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. **ci**: Cambios en los archivos y scripts de configuración del servicio de CI (Integración Continua).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    - **Cuándo usarlo**: Cuando configuras o ajustas scripts relacionados con CI/CD (ej., GitHub Actions, Jenkins, Travis).
+    - **Ejemplo**:
+        - `ci: add GitHub Actions config for running tests`
+        - `ci: update Travis CI configuration for node versions`
 
-## Laravel Sponsors
+4. **docs**: Cambios que solo afectan la documentación.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    - **Cuándo usarlo**: Cuando agregas, actualizas o corriges documentación.
+    - **Ejemplo**:
+        - `docs: update README with new installation instructions`
+        - `docs: fix typo in API documentation`
 
-### Premium Partners
+5. **feat**: Una nueva característica para el usuario.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    - **Cuándo usarlo**: Cuando implementas una nueva funcionalidad o característica en el código.
+    - **Ejemplo**:
+        - `feat: add user login functionality`
+        - `feat: implement dark mode toggle`
 
-## Contributing
+6. **fix**: Solución a un bug.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    - **Cuándo usarlo**: Cuando corriges un error o bug en el código.
+    - **Ejemplo**:
+        - `fix: resolve issue with incorrect user permissions`
+        - `fix: fix null pointer exception in data processing`
 
-## Code of Conduct
+7. **perf**: Un cambio de código que mejora el rendimiento.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+    - **Cuándo usarlo**: Cuando haces optimizaciones para mejorar la velocidad o eficiencia del código.
+    - **Ejemplo**:
+        - `perf: optimize image loading times`
+        - `perf: reduce memory usage in data processing module`
 
-## Security Vulnerabilities
+8. **refactor**: Un cambio de código que no corrige un bug ni añade una característica, pero mejora la estructura del código.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    - **Cuándo usarlo**: Para reestructurar, limpiar o mejorar el código sin cambiar su comportamiento externo.
+    - **Ejemplo**:
+        - `refactor: reorganize folder structure`
+        - `refactor: simplify data fetching logic`
 
-## License
+9. **revert**: Reversión de un commit anterior.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    - **Cuándo usarlo**: Cuando necesitas deshacer los cambios de un commit anterior.
+    - **Ejemplo**:
+        - `revert: revert "feat: add user login functionality"`
+        - `revert: revert commit 12345abc`
+
+10. **style**: Cambios que no afectan el significado del código (espacios en blanco, formato, etc.).
+
+-   **Cuándo usarlo**: Para cambios estéticos en el código, como corrección de indentaciones, espacios, o comas innecesarias.
+-   **Ejemplo**:
+    -   `style: fix indentation in main.js`
+    -   `style: remove trailing whitespace in CSS files`
+
+11. **test**: Añadir o corregir tests.
+
+-   **Cuándo usarlo**: Cuando agregas, actualizas o corriges pruebas (tests) en el código.
+-   **Ejemplo**:
+    -   `test: add unit tests for authentication service`
+    -   `test: fix broken integration tests for API`
+
+Estos tipos de commits ayudan a mantener un historial claro y permiten a los colaboradores entender rápidamente qué tipo de cambio se realizó sin tener que revisar el código detalladamente.
