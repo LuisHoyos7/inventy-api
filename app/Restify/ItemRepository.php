@@ -26,9 +26,9 @@ class ItemRepository extends Repository
                 ->messages([
                     'required' => 'El tipo es requerido.',
                 ]),
-            field('initial_cost')->rules('required', 'numeric'),
+            field('initial_cost')->rules('nullable', 'numeric'),
             field('category_id')
-                ->rules('required', Rule::exists(Category::class, 'id'))
+                ->rules('nullable', Rule::exists(Category::class, 'id'))
                 ->messages([
                     'required' => 'La categoría es requerida',
                     'exists' => 'La categoría escogida no es válida.',
