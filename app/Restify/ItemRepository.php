@@ -27,7 +27,8 @@ class ItemRepository extends Repository
                     'required' => 'El tipo es requerido.',
                 ]),
             field('initial_cost')->rules('nullable', 'numeric'),
-            field('img')->image()->rules('nullable'),
+            field('img')->image()
+                ->path($request->user()->company_id . '-item-images'),
             field('category_id')
                 ->rules('nullable', Rule::exists(Category::class, 'id'))
                 ->messages([
