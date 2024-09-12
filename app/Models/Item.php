@@ -20,6 +20,7 @@ class Item extends Model
         "initial_cost",
         "category_id",
         "company_id",
+        'img',
     ];
 
     /**
