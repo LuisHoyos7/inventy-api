@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class IdentificationType extends Model
 {
     use HasFactory;
-
-    public function companies()
-    {
-        return $this->hasMany(Company::class);
-    }
 }
