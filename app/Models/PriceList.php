@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class PriceList extends Model
 {
 
-    public function item(): BelongsToMany
+    public function items(): BelongsToMany
     {
         return $this->belongsToMany(Item::class, 'item_price_list');
     }

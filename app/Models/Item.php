@@ -41,7 +41,7 @@ class Item extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function priceList(): BelongsToMany
+    public function priceLists(): BelongsToMany
     {
         return $this->belongsToMany(PriceList::class, 'item_price_list');
     }
