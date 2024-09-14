@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('withholdings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('type', [WithholdingType::RENTA,
-                WithholdingType::RETEICA, WithholdingType::RETEIVA,
-                WithholdingType::RETENCION_TIMBRE
+            $table->enum('type', ['RETENCION EN RENTA',
+                'RETENCION EN ICA', 'RETENCION EN IVA',
+                'RETENCION EN TIMBRE NACIONAL'
             ]);
             $table->float('percent');
             $table->float('amount');
