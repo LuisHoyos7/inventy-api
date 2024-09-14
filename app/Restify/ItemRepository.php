@@ -27,7 +27,7 @@ class ItemRepository extends Repository
                 ->updatingRules(Rule::unique('items')
                 ->where(fn($query) => $query
                 ->where('company_id', Auth::user()->company_id))
-                ->ignore('barcode', $request->barcode)),
+                ->ignore($this->id)),
             field('type')
                 ->rules('required', Rule::enum(ItemType::class))
                 ->messages([
