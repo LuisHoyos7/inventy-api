@@ -8,6 +8,7 @@ use App\Models\Item;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Binaryk\LaravelRestify\Repositories\Repository;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class ItemRepository extends Repository
@@ -20,7 +21,13 @@ class ItemRepository extends Repository
         return [
             field('name')->rules('required', 'min:3', 'max:255'),
             field('description')->rules('nullable', 'max:255'),
-            field('barcode')->rules('required', 'min:3', 'max:100'),
+            field('barcode')->rules('required', 'min:3', 'max:100')
+                ->storingRules(Rule::unique('items')
+                ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)))
+                ->updatingRules(Rule::unique('items')
+                ->where(fn($query) => $query
+                ->where('company_id', Auth::user()->company_id))
+                ->ignore($this->id)),
             field('type')
                 ->rules('required', Rule::enum(ItemType::class))
                 ->messages([
