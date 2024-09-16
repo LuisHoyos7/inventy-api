@@ -52,9 +52,6 @@ class ItemRepository extends Repository
             'category' => BelongsTo::make('category'),
             'priceLists' => BelongsToMany::make('priceLists', PriceListRepository::class)
                 ->withPivot(
-                    field('id'),
-                    field('item_id'),
-                    field('price_list_id'),
                     field('price')
                 )
                 ->attachCallback(function ($request, $repository, $item) {
