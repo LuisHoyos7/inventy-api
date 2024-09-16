@@ -6,6 +6,7 @@ use App\Enums\ItemType;
 use App\Models\Category;
 use App\Models\Item;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
+use Binaryk\LaravelRestify\Fields\BelongsToMany;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Binaryk\LaravelRestify\Repositories\Repository;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,17 @@ class ItemRepository extends Repository
     {
         return [
             'category' => BelongsTo::make('category'),
+            'priceLists' => BelongsToMany::make('priceLists', PriceListRepository::class)
+                ->withPivot(
+                    field('id'),
+                    field('item_id'),
+                    field('price_list_id'),
+                    field('price')
+                )
+                ->attachCallback(function ($request, $repository, $item) {
+                    $item->priceLists()->attach($request->price_list_id, 
+                        ['price' => $request->price ? $request->price : 0]);
+                }),
         ];
     }
 }

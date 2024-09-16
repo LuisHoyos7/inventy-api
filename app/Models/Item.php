@@ -24,6 +24,8 @@ class Item extends Model
         'img',
     ];
 
+    protected $with = ['priceLists'];
+
     /**
      * Get the attributes that should be cast.
      *
@@ -43,6 +45,7 @@ class Item extends Model
 
     public function priceLists(): BelongsToMany
     {
-        return $this->belongsToMany(PriceList::class, 'item_price_list');
+        return $this->belongsToMany(PriceList::class, 'item_price_list')
+            ->withPivot('id', 'item_id', 'price_list_id', 'price');
     }
 }
