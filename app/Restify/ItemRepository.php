@@ -60,6 +60,9 @@ class ItemRepository extends Repository
                 ->attachCallback(function ($request, $repository, $item) {
                     $item->priceLists()->attach($request->price_list_id, 
                         ['price' => $request->price ? $request->price : 0]);
+                })
+                ->detachCallback(function ($request, $repository, $item) {
+                    $item->priceLists()->detach($request->price_list_id);
                 }),
         ];
     }

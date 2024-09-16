@@ -10,7 +10,7 @@ use Binaryk\LaravelRestify\Filters\Matches;
 
 class ItemTypeRepository extends Repository
 {
-    public static string $model = ItemType::class;
+    // public static string $model = ItemType::class;
 
     public function fields(RestifyRequest $request): array
     {
