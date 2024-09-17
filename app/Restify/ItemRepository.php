@@ -12,10 +12,13 @@ use Binaryk\LaravelRestify\Repositories\Repository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
+
 class ItemRepository extends Repository
 {
     public static string $model = Item::class;
     public static array $search = ['name', 'description', 'barcode'];
+    public static $withs = ['priceLists'];
+
 
     public function fields(RestifyRequest $request): array
     {
@@ -62,5 +65,18 @@ class ItemRepository extends Repository
                     $item->priceLists()->detach($request->price_list_id);
                 }),
         ];
+    }
+
+    public function update(RestifyRequest $request, $repositoryId)
+    {
+        $item = Item::find($repositoryId);
+ 
+        $item->priceLists()->updateExistingPivot($request->price_list_id, [
+            'price' => $request->price,
+        ]);
+
+        $item->update($request->except('price_list_id', 'price'));
+
+        return response()->json($item);
     }
 }
