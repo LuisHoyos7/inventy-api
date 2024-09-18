@@ -37,4 +37,8 @@ class Company extends Model
         return $this->hasMany(Item::class);
     }
 
+    public function priceLists(): HasMany
+    {
+        return $this->hasMany(PriceList::class);
+    }
 }
