@@ -11,5 +11,9 @@ class CompanyObserver
         $company->branches()->create([
             'name' => 'Principal'
         ]);
+
+        $company->priceLists()->create([
+            'name' => 'Principal'
+        ]);
     }
 }
