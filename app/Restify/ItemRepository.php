@@ -6,30 +6,39 @@ use App\Enums\ItemType;
 use App\Models\Category;
 use App\Models\Item;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
+use Binaryk\LaravelRestify\Fields\BelongsToMany;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Binaryk\LaravelRestify\Repositories\Repository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
+
 class ItemRepository extends Repository
 {
     public static string $model = Item::class;
     public static array $search = ['name', 'description', 'barcode'];
+    public static $withs = ['priceLists'];
+
 
     public function fields(RestifyRequest $request): array
     {
         return [
-            field('name')->rules('required', 'min:3', 'max:255'),
+            field('name')
+                // ->rules('required', 'min:3', 'max:255'),
+                ->storingRules('required_without:img'),
             field('description')->rules('nullable', 'max:255'),
-            field('barcode')->rules('required', 'min:3', 'max:100')
+            field('barcode')
+                // ->rules('required', 'min:3', 'max:100')
                 ->storingRules(Rule::unique('items')
-                ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)))
+                ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)),
+                'required_without:img')
                 ->updatingRules(Rule::unique('items')
                 ->where(fn($query) => $query
                 ->where('company_id', Auth::user()->company_id))
                 ->ignore($this->id)),
             field('type')
-                ->rules('required', Rule::enum(ItemType::class))
+                ->storingRules('required_without:img', Rule::enum(ItemType::class))
+                // ->rules('required', Rule::enum(ItemType::class))
                 ->messages([
                     'required' => 'El tipo es requerido.',
                 ]),
@@ -49,6 +58,37 @@ class ItemRepository extends Repository
     {
         return [
             'category' => BelongsTo::make('category'),
+            'priceLists' => BelongsToMany::make('priceLists', PriceListRepository::class)
+                ->withPivot(
+                    field('price')
+                )
+                ->attachCallback(function ($request, $repository, $item) {
+                    if ($item->priceLists()->exists()) {
+                        $item->priceLists()->updateExistingPivot($request->price_list_id, [
+                            'price' => $request->price,
+                        ]);
+                    }
+                    else{
+                        $item->priceLists()->attach($request->price_list_id, 
+                            ['price' => $request->price ? $request->price : 0]);
+                    }
+                })
+                ->detachCallback(function ($request, $repository, $item) {
+                    $item->priceLists()->detach($request->price_list_id);
+                }),
         ];
     }
+
+    // public function update(RestifyRequest $request, $repositoryId)
+    // {
+    //     $item = Item::find($repositoryId);
+ 
+    //     $item->priceLists()->updateExistingPivot($request->price_list_id, [
+    //         'price' => $request->price,
+    //     ]);
+
+    //     $item->update($request->except('price_list_id', 'price'));
+
+    //     return response()->json($item);
+    // }
 }
