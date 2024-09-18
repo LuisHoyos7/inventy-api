@@ -24,29 +24,55 @@ class ItemRepository extends Repository
     {
         return [
             field('name')
-                // ->rules('required', 'min:3', 'max:255'),
-                ->storingRules('required_without:img'),
-            field('description')->rules('nullable', 'max:255'),
+                ->storingRules([
+                    'required_without:img',
+                    'min:3',
+                    'max:255',
+                ]),
+            field('description')
+                ->rules([
+                    'nullable',
+                    'max:255',
+                ]),
             field('barcode')
-                // ->rules('required', 'min:3', 'max:100')
-                ->storingRules(Rule::unique('items')
-                ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)),
-                'required_without:img')
-                ->updatingRules(Rule::unique('items')
-                ->where(fn($query) => $query
-                ->where('company_id', Auth::user()->company_id))
-                ->ignore($this->id)),
+                ->storingRules(
+                    [
+                        'required_without:img',
+                        'min:3',
+                        'max:100',
+                        Rule::unique('items')
+                            ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)),
+                    ]
+                )
+                ->updatingRules(
+                    [
+                        Rule::unique('items')
+                            ->where(fn($query) => $query
+                                ->where('company_id', Auth::user()->company_id))
+                            ->ignore($this->id)
+                    ]
+                ),
             field('type')
-                ->storingRules('required_without:img', Rule::enum(ItemType::class))
-                // ->rules('required', Rule::enum(ItemType::class))
+                ->storingRules([
+                    'required_without:img',
+                    Rule::enum(ItemType::class)
+                ])
                 ->messages([
                     'required' => 'El tipo es requerido.',
                 ]),
-            field('initial_cost')->rules('nullable', 'numeric'),
-            field('img')->image()
+            field('initial_cost')
+                ->rules([
+                    'nullable',
+                    'numeric'
+                ]),
+            field('img')
+                ->image()
                 ->path($request->user()->company_id . '-item-images'),
             field('category_id')
-                ->rules('nullable', Rule::exists(Category::class, 'id'))
+                ->rules([
+                    'nullable',
+                    Rule::exists(Category::class, 'id')
+                ])
                 ->messages([
                     'required' => 'La categoría es requerida',
                     'exists' => 'La categoría escogida no es válida.',
@@ -67,10 +93,11 @@ class ItemRepository extends Repository
                         $item->priceLists()->updateExistingPivot($request->price_list_id, [
                             'price' => $request->price,
                         ]);
-                    }
-                    else{
-                        $item->priceLists()->attach($request->price_list_id, 
-                            ['price' => $request->price ? $request->price : 0]);
+                    } else {
+                        $item->priceLists()->attach(
+                            $request->price_list_id,
+                            ['price' => $request->price ?: 0]
+                        );
                     }
                 })
                 ->detachCallback(function ($request, $repository, $item) {
@@ -78,17 +105,4 @@ class ItemRepository extends Repository
                 }),
         ];
     }
-
-    // public function update(RestifyRequest $request, $repositoryId)
-    // {
-    //     $item = Item::find($repositoryId);
- 
-    //     $item->priceLists()->updateExistingPivot($request->price_list_id, [
-    //         'price' => $request->price,
-    //     ]);
-
-    //     $item->update($request->except('price_list_id', 'price'));
-
-    //     return response()->json($item);
-    // }
 }
