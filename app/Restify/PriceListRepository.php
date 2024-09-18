@@ -18,9 +18,6 @@ class PriceListRepository extends Repository
     {
         return [
             field('name')->rules('required', 'min:3', 'max:255'),
-
-            // Relación "muchos a uno" con el modelo Article
-            BelongsTo::make('Item', 'item', ItemRepository::class),
         ];
     }
 }
