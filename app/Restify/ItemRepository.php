@@ -17,8 +17,6 @@ class ItemRepository extends Repository
 {
     public static string $model = Item::class;
     public static array $search = ['name', 'description', 'barcode'];
-    public static $withs = ['priceLists'];
-
 
     public function fields(RestifyRequest $request): array
     {
@@ -83,11 +81,13 @@ class ItemRepository extends Repository
     public static function related(): array
     {
         return [
+            'company' => BelongsTo::make('company'),
             'category' => BelongsTo::make('category'),
-            'priceLists' => BelongsToMany::make('priceLists', PriceListRepository::class)
-                ->withPivot(
-                    field('price')
-                )
+            'priceLists' => BelongsToMany::make(
+                'priceLists',
+                PriceListRepository::class
+            )
+                ->withPivot(field('price'))
                 ->attachCallback(function ($request, $repository, $item) {
                     if ($item->priceLists()->exists()) {
                         $item->priceLists()->updateExistingPivot($request->price_list_id, [

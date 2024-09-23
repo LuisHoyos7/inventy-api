@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\PriceList;
 
-class PriceListPolicy
+class CompanyPolicy
 {
     use HandlesAuthorization;
 
@@ -15,14 +15,14 @@ class PriceListPolicy
         return true;
     }
 
-    public function show(User $user = null, PriceList $model): bool
+    public function show(User $user = null, Company $model): bool
     {
         return true;
     }
 
     public function store(User $user): bool
     {
-        return true;
+        return false;
     }
 
     public function storeBulk(User $user): bool
@@ -30,22 +30,22 @@ class PriceListPolicy
         return false;
     }
 
-    public function update(User $user, PriceList $model): bool
-    {
-        return true;
-    }
-
-    public function updateBulk(User $user, PriceList $model): bool
+    public function update(User $user, Company $model): bool
     {
         return false;
     }
 
-    public function deleteBulk(User $user, PriceList $model): bool
+    public function updateBulk(User $user, Company $model): bool
     {
         return false;
     }
 
-    public function delete(User $user, PriceList $model): bool
+    public function deleteBulk(User $user, Company $model): bool
+    {
+        return false;
+    }
+
+    public function delete(User $user, Company $model): bool
     {
         return false;
     }
