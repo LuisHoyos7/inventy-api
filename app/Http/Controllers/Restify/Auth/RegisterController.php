@@ -16,8 +16,10 @@ class RegisterController extends Controller
 
         $user = $company->users()->create($inputs);
 
-        return rest($user)->indexMeta([
-            'token' => $user->createToken('register')->plainTextToken,
-        ]);
+        return rest($user)
+            ->related('company.priceLists')
+            ->indexMeta([
+                'token' => $user->createToken('register')->plainTextToken,
+            ]);
     }
 }
