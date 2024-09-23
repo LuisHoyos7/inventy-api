@@ -27,8 +27,10 @@ class LoginController extends Controller
             abort(401, 'Invalid credentials.');
         }
 
-        return rest($user)->indexMeta([
-            'token' => $user->createToken('login')->plainTextToken,
-        ]);
+        return rest($user)
+            ->related('company.priceLists')
+            ->indexMeta([
+                'token' => $user->createToken('login')->plainTextToken,
+            ]);
     }
 }
