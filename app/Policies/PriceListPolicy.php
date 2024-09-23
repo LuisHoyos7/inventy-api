@@ -47,6 +47,6 @@ class PriceListPolicy
 
     public function delete(User $user, PriceList $model): bool
     {
-        return true;
+        return false;
     }
 }
