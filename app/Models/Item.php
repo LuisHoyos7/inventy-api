@@ -46,6 +46,7 @@ class Item extends Model
     public function priceLists(): BelongsToMany
     {
         return $this->belongsToMany(PriceList::class, 'item_price_list')
-            ->withPivot('price');
+            ->withPivot('price')
+            ->withTimestamps();
     }
 }
