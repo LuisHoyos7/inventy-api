@@ -3,6 +3,7 @@
 namespace App\Restify;
 
 use App\Models\User;
+use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 
 class UserRepository extends Repository
@@ -13,9 +14,18 @@ class UserRepository extends Repository
     {
         return [
             field('name')->rules('required'),
-            field('email')->storingRules('required', 'unique:users')->messages([
-                'required' => 'This field is required.',
-            ]),
+            field('email')
+                ->storingRules('required', 'unique:users')
+                ->messages(messages: [
+                    'required' => 'This field is required.',
+                ]),
+        ];
+    }
+
+    public static function related(): array
+    {
+        return [
+            'company' => BelongsTo::make('company'),
         ];
     }
 }
