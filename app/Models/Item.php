@@ -22,6 +22,7 @@ class Item extends Model
         "category_id",
         "company_id",
         'img',
+        'profit'
     ];
 
     //protected $with = ['priceLists'];
