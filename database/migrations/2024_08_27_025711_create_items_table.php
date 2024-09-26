@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('barcode', 100);
             $table->string('type', 10);
-            $table->decimal('initial_cost')->default(0);
+            $table->decimal('initial_cost', 20, 2)->default(0);
             $table->string('img')->nullable();
             $table->foreignId('category_id')->nullable()->constrained();
             $table->foreignId('company_id')->constrained();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('item_id')->constrained();
             $table->foreignId('price_list_id')->constrained();
-            $table->decimal('price', 11, 2);
+            $table->decimal('price', 20, 2)->default(0);
             $table->timestamps();
         });
     }
