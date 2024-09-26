@@ -61,7 +61,16 @@ class ItemRepository extends Repository
             field('initial_cost')
                 ->rules([
                     'nullable',
-                    'numeric'
+                    'numeric',
+                    'regex:/^\d{1,18}(\.\d{1,2})?$/',  // Validar el formato decimal (hasta 18 enteros y 2 decimales)
+                    'between:0,999999999999999999.99', // Validar el rango de valores posibles para decimal(20,2)
+                ]),
+            field('profit')
+                ->rules([
+                    'nullable',
+                    'numeric',
+                    'regex:/^\d{1,6}(\.\d{1,2})?$/',  // Validar el formato decimal (hasta 6 enteros y 2 decimales)
+                    'between:0,999999.99', // Validar el rango de valores posibles para decimal(8,2)
                 ]),
             field('img')
                 ->image()
@@ -74,10 +83,6 @@ class ItemRepository extends Repository
                 ->messages([
                     'required' => 'La categoría es requerida',
                     'exists' => 'La categoría escogida no es válida.',
-                ]),
-            field('profit')
-                ->rules([
-                    'numeric'
                 ]),
         ];
     }
@@ -93,6 +98,14 @@ class ItemRepository extends Repository
             )
                 ->withPivot(field('price'))
                 ->attachCallback(function ($request, $repository, $item) {
+                    $request->validate([
+                        'price' => [
+                            'required',
+                            'numeric',
+                            'regex:/^\d{1,18}(\.\d{1,2})?$/',  // Validar el formato decimal (hasta 18 enteros y 2 decimales)
+                            'between:0,999999999999999999.99', // Validar el rango de valores posibles para decimal(20,2)
+                        ],
+                    ]);
                     if ($item->priceLists()->exists()) {
                         $item->priceLists()->updateExistingPivot($request->price_list_id, [
                             'price' => $request->price,
