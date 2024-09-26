@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_price_list', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('item_id')->constrained();
-            $table->foreignId('price_list_id')->constrained();
-            $table->decimal('price', 20, 2)->default(0);
-            $table->timestamps();
+        Schema::table('items', function (Blueprint $table) {
+            $table->decimal('profit')->after('initial_cost')->default(0);
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('item_price_list');
+        Schema::table('items', function (Blueprint $table) {
+            $table->dropColumn('profit');
+        });
     }
 };
