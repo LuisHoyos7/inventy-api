@@ -12,7 +12,7 @@ class ContactRepository extends Repository
 {
     public static string $model = Contact::class;
 
-    public static array $search = ['identification', 'name'];
+    public static array $search = ['identification', 'fullname'];
 
     public function fields(RestifyRequest $request): array
     {
