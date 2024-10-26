@@ -84,6 +84,9 @@ class ItemRepository extends Repository
                     'required' => 'La categoría es requerida',
                     'exists' => 'La categoría escogida no es válida.',
                 ]),
+
+                field('stock')
+                
         ];
     }
 
