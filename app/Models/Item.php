@@ -23,7 +23,7 @@ class Item extends Model
         "company_id",
         'img',
         'profit',
-        'stock'
+        'stock',
     ];
 
     //protected $with = ['priceLists'];
@@ -53,8 +53,8 @@ class Item extends Model
     }
 
     public function adjustStock(int $quantity): void
-{
-    $this->stock += $quantity;
-    $this->save();
-}
+    {
+        $this->stock += $quantity;
+        $this->save();
+    }
 }
