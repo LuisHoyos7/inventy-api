@@ -22,7 +22,8 @@ class Item extends Model
         "category_id",
         "company_id",
         'img',
-        'profit'
+        'profit',
+        'stock',
     ];
 
     //protected $with = ['priceLists'];
@@ -49,5 +50,11 @@ class Item extends Model
         return $this->belongsToMany(PriceList::class, 'item_price_list')
             ->withPivot('price')
             ->withTimestamps();
+    }
+
+    public function adjustStock(int $quantity): void
+    {
+        $this->stock += $quantity;
+        $this->save();
     }
 }
