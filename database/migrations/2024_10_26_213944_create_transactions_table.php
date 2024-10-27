@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\TransactionType;
+use App\Enums\TransactionsType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', array_column(TransactionType::cases(), 'value'));
+            $table->enum('type', array_column(TransactionsType::cases(), 'value'));
             $table->date('date');
             $table->decimal('total', 20, 2);
             $table->foreignId('contact_id')->constrained()->cascadeOnDelete();

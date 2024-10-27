@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Enums\TransactionType;
+use App\Enums\TransactionsType;
 use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -22,7 +22,7 @@ class Transaction extends Model
     protected function casts(): array
     {
         return [
-            'type' => TransactionType::class,
+            'type' => TransactionsType::class,
         ];
     }
 }
