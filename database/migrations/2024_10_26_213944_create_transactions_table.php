@@ -14,12 +14,11 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->enum('type', TransactionType::cases());
+            $table->enum('type', array_column(TransactionType::cases(), 'value'));
             $table->date('date');
             $table->decimal('total', 20, 2);
             $table->foreignId('contact_id')->constrained()->cascadeOnDelete();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-
         });
     }
 
