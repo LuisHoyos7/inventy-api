@@ -2,6 +2,10 @@
 
 namespace App\Observers;
 
+use App\Enums\InventoryMovementType;
+use App\Enums\TransactionStatus;
+use App\Enums\TransactionsType;
+use App\Models\InventoryMovement;
 use App\Models\Transaction;
 
 class TransactionObserver
@@ -19,8 +23,18 @@ class TransactionObserver
      */
     public function updated(Transaction $transaction): void
     {
-        dd($transaction);
-
+        if($transaction->status === TransactionStatus::COMPLETED){
+            foreach ($transaction->items as $item) {
+                $transaction->inventoryMovements()->create([
+                    'type' => $transaction->type === TransactionsType::SALE ? 
+                        InventoryMovementType::OUT : 
+                        InventoryMovementType::IN,
+    
+                    'item_id' => $item->id,  
+                    'quantity' => $item->pivot->quantity, 
+                ]);
+            }
+        }
     }
 
     /**

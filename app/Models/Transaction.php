@@ -4,12 +4,15 @@ namespace App\Models;
 
 use App\Enums\TransactionStatus;
 use App\Enums\TransactionsType;
+use App\Observers\TransactionObserver;
 use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+#[ObservedBy([TransactionObserver::class])]
 class Transaction extends Model
 {
     use HasFactory, HasCompany;
@@ -46,5 +49,10 @@ class Transaction extends Model
                 'total',
             ])
             ->withTimestamps();
+    }
+
+    public function inventoryMovements(): HasMany
+    {
+        return $this->hasMany(InventoryMovement::class);
     }
 }
