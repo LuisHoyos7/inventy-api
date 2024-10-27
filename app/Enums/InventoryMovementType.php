@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum InventoryMovementType: string
 {
-    case INT = 'INT';
+    case IN = 'IN';
     case OUT = 'OUT';
 }
