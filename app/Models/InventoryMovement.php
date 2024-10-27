@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasCompany;
 use App\Enums\InventoryMovementType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,14 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class InventoryMovement extends Model
 {
-    use HasFactory;
+    use HasFactory, HasCompany;
 
     protected $fillable = [
         'type',
         'quantity',
         'item_id',
         'transaction_id',
-        'company_id'
+        'company_id',
     ];
 
     protected function casts(): array
@@ -26,7 +27,6 @@ class InventoryMovement extends Model
         ];
     }
 
-    // Define relationships with other models
     public function item() : BelongsTo
     {
         return $this->belongsTo(Item::class);
