@@ -14,5 +14,10 @@ class InventoryMovementPolicy
     {
         return true;
     }
+
+    public function show(User $user = null, InventoryMovement $model): bool
+    {
+        return true;
+    }
     
 }

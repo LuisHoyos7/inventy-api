@@ -35,7 +35,7 @@ class TransactionRepository extends Repository
                 ]),
             field('date')
                 ->rules([
-                    'required',
+                    'required', 
                     'date',
                 ]),
             field('total')
