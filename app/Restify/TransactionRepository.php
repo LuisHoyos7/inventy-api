@@ -3,6 +3,7 @@
 namespace App\Restify;
 
 use App\Enums\TransactionStatus;
+use App\Enums\TransactionsType;
 use App\Models\Contact;
 use App\Models\Transaction;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
@@ -21,7 +22,7 @@ class TransactionRepository extends Repository
             field('type')
                 ->rules([
                     'required',
-                    'string',
+                    Rule::enum(TransactionsType::class),
                 ]),
             field('contact_id')
                 ->rules([
@@ -35,7 +36,7 @@ class TransactionRepository extends Repository
                 ]),
             field('date')
                 ->rules([
-                    'required', 
+                    'required',
                     'date',
                 ]),
             field('total')
