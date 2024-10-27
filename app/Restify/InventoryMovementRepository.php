@@ -31,7 +31,7 @@ class InventoryMovementRepository extends Repository
     public static function allowedActions(): array
     {
         return [
-            'index',
+            'index'
         ];
     }
 
