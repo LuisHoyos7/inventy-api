@@ -25,7 +25,6 @@ class ContactRepository extends Repository
                     Rule::unique('contacts')
                         ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)),
                 ])
-
                 ->updatingRules(
                     [
                         'required',
@@ -37,7 +36,6 @@ class ContactRepository extends Repository
                             ->ignore($this->id)
                     ]
                 ),
-
             field('fullname')
                 ->storingRules([
                     'required',
@@ -45,7 +43,6 @@ class ContactRepository extends Repository
                     'min:3',
                     'max:255',
                 ]),
-
             field('email')
                 ->storingRules([
                     'required',
@@ -53,17 +50,14 @@ class ContactRepository extends Repository
                     'email',
                     'max:255',
                 ]),
-
             field('is_customer')
                 ->storingRules([
                     'boolean',
                 ]),
-
             field('is_supplier')
                 ->storingRules([
                     'boolean',
                 ]),
-
         ];
     }
 
