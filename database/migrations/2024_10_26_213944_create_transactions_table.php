@@ -19,7 +19,6 @@ return new class extends Migration
             $table->decimal('total', 20, 2);
             $table->foreignId('contact_id')->constrained()->cascadeOnDelete();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();
-
         });
     }
 
