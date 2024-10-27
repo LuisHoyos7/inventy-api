@@ -17,7 +17,7 @@ class InventoryMovement extends Model
         'quantity',
         'item_id',
         'transaction_id',
-        'company_id'
+        'company_id',
     ];
 
     protected function casts(): array
@@ -27,7 +27,6 @@ class InventoryMovement extends Model
         ];
     }
 
-    // Define relationships with other models
     public function item() : BelongsTo
     {
         return $this->belongsTo(Item::class);
@@ -36,10 +35,5 @@ class InventoryMovement extends Model
     public function transaction() : BelongsTo
     {
         return $this->belongsTo(Transaction::class);
-    }
-
-    public function company() : BelongsTo
-    {
-        return $this->belongsTo(Company::class);
     }
 }
