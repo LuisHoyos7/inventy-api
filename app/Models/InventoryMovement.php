@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\HasCompany;
 use App\Enums\InventoryMovementType;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class InventoryMovement extends Model
 {
-    use HasFactory;
+    use HasFactory, HasCompany;
 
     protected $fillable = [
         'type',
