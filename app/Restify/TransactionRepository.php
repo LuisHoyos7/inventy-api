@@ -16,6 +16,11 @@ class TransactionRepository extends Repository
 {
     public static string $model = Transaction::class;
 
+    public static array $match = [
+        'type' => 'string',
+        'status' => 'string',
+    ];
+
     public function fields(RestifyRequest $request): array
     {
         return [
