@@ -10,54 +10,30 @@ use App\Models\Transaction;
 
 class TransactionObserver
 {
-    /**
-     * Handle the Transaction "created" event.
-     */
-    public function created(Transaction $transaction): void
-    {
-        //
-    }
 
     /**
      * Handle the Transaction "updated" event.
      */
     public function updated(Transaction $transaction): void
     {
-        if($transaction->status === TransactionStatus::COMPLETED){
+        if ($transaction->status === TransactionStatus::COMPLETED) {
             foreach ($transaction->items as $item) {
                 $transaction->inventoryMovements()->create([
-                    'type' => $transaction->type === TransactionsType::SALE ? 
-                        InventoryMovementType::OUT : 
+                    'type' => $transaction->type === TransactionsType::SALE ?
+                        InventoryMovementType::OUT :
                         InventoryMovementType::IN,
-    
-                    'item_id' => $item->id,  
-                    'quantity' => $item->pivot->quantity, 
+                    'item_id' => $item->id,
+                    'quantity' => $item->pivot->quantity,
                 ]);
             }
+
+            foreach ($transaction->items as $item) {
+                $item->adjustStock(
+                    $transaction->type === TransactionsType::SALE ?
+                        -$item->pivot->quantity :
+                        $item->pivot->quantity
+                );
+            }
         }
-    }
-
-    /**
-     * Handle the Transaction "deleted" event.
-     */
-    public function deleted(Transaction $transaction): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Transaction "restored" event.
-     */
-    public function restored(Transaction $transaction): void
-    {
-        //
-    }
-
-    /**
-     * Handle the Transaction "force deleted" event.
-     */
-    public function forceDeleted(Transaction $transaction): void
-    {
-        //
     }
 }
