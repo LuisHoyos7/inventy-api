@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Item;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Fields\BelongsToMany;
+use Binaryk\LaravelRestify\Fields\HasMany;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Binaryk\LaravelRestify\Repositories\Repository;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +18,10 @@ class ItemRepository extends Repository
 {
     public static string $model = Item::class;
     public static array $search = ['name', 'description', 'barcode'];
+
+    public static array $match = [
+        'stock' => 'int',
+    ];
 
     public function fields(RestifyRequest $request): array
     {
@@ -84,9 +89,7 @@ class ItemRepository extends Repository
                     'required' => 'La categoría es requerida',
                     'exists' => 'La categoría escogida no es válida.',
                 ]),
-
             field('stock')
-
         ];
     }
 
@@ -95,6 +98,7 @@ class ItemRepository extends Repository
         return [
             'company' => BelongsTo::make('company'),
             'category' => BelongsTo::make('category'),
+            'inventoryMovements' => HasMany::make('inventoryMovements'),
             'priceLists' => BelongsToMany::make(
                 'priceLists',
                 PriceListRepository::class

@@ -54,6 +54,8 @@ class TransactionRepository extends Repository
                     'nullable',
                     Rule::enum(TransactionStatus::class),
                 ]),
+            field('created_at'),
+            field('updated_at')
         ];
     }
 

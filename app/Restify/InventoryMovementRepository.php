@@ -24,6 +24,7 @@ class InventoryMovementRepository extends Repository
                     'required',
                     'integer',
                 ]),
+            field('created_at')
         ];
     }
 
