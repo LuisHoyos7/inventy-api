@@ -13,11 +13,11 @@ class MakeCustomer
     public function handle(Contact $contact)
     {
         return [
-            'companyName' => $contact->full_name,
+            'companyName' => $contact->fullname,
             'personType' => '2',
             'regimeType' => '49',
-            'firstName' => $contact->full_name,
-            'lastName' => $contact->full_name,
+            'firstName' => $contact->fullname,
+            'lastName' => $contact->fullname,
             'identification' => $contact->identification,
             'digitCheck' => (string) DV::getDV($contact->identification),
             'identificationTypeCode' => '13',

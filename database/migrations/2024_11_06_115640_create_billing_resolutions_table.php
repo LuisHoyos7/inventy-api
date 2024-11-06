@@ -28,7 +28,9 @@ return new class extends Migration
             $table->bigInteger('consecutive_start');
             $table->bigInteger('consecutive_end')->nullable();
             $table->bigInteger('current_consecutive');
+            $table->date('start_date')->nullable();
             $table->date('due_date')->nullable();
+            $table->string('technical_key')->nullable();
             $table->timestamps();
         });
     }

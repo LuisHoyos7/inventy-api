@@ -6,6 +6,7 @@ use App\Enums\TransactionStatus;
 use App\Enums\TransactionsType;
 use App\Models\Contact;
 use App\Models\Transaction;
+use App\Restify\Actions\SendBillingAction;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Fields\BelongsToMany;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
@@ -72,6 +73,13 @@ class TransactionRepository extends Repository
                     field('total')->rules(['required', 'numeric']),
                 ]
             ),
+        ];
+    }
+
+    public function actions(RestifyRequest $request): array
+    {
+        return [
+            SendBillingAction::new(),
         ];
     }
 }

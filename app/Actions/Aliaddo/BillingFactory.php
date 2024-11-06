@@ -10,8 +10,10 @@ class BillingFactory
 {
     use AsAction;
 
-    public function handle(Transaction $transaction, BillingResolution $resolution)
+    public function handle(Transaction $transaction)
     {
+        $resolution = BillingResolution::first();
+
         $invoice['code'] = '01';
         $invoice['format'] = 'Estandar';
         $invoice['emailSender'] = '';
