@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'aliaddo' => [
+        'api_url' => env('ALIADDO_BASE_API_URL'),
+        'api_key' => env('ALIADDO_API_KEY'),
+    ],
+
 ];
