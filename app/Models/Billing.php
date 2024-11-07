@@ -13,6 +13,10 @@ class Billing extends Model
     protected $fillable = [
         'data',
         'transaction_id',
+        'code',
+        'cufe',
+        'pdf_link',
+        'qrcode',
     ];
 
     protected function casts(): array

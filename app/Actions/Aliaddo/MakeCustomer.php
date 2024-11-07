@@ -33,7 +33,7 @@ class MakeCustomer
             'billingRegionName' => 'BOGOTA',
             'billingRegionCode' => '11',
             'billingCityName' => 'BOGOTA',
-            'billingCityCode' => '001',
+            'billingCityCode' => '11001',
             'billingPostalCode' => '',
             'billingNeighborhood' => '',
             'billingPhone' => '',

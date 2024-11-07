@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->json('data')->nullable();
             $table->foreignId('transaction_id')->constrained()->cascadeOnDelete();
+            $table->string('code')->nullable();
+            $table->string('cufe')->nullable();
+            $table->text('qrcode')->nullable();
+            $table->text('pdf_link')->nullable();
             $table->timestamps();
         });
     }

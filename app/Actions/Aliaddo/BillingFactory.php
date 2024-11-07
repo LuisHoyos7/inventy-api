@@ -10,10 +10,8 @@ class BillingFactory
 {
     use AsAction;
 
-    public function handle(Transaction $transaction)
+    public function handle(Transaction $transaction, BillingResolution $resolution)
     {
-        $resolution = BillingResolution::first();
-
         $invoice['code'] = '01';
         $invoice['format'] = 'Estandar';
         $invoice['emailSender'] = '';
@@ -21,8 +19,8 @@ class BillingFactory
         $invoice['externalNumber'] = '';
         $invoice['currencyCode'] = 'COP';
         $invoice['currencyRate'] = 0;
-        $invoice['date'] = $transaction->date;
-        $invoice['dateDue'] = $transaction->date;
+        $invoice['date'] = date('Y-m-d');
+        $invoice['dateDue'] = date('Y-m-d');
         $invoice['dateStart'] = '';
         $invoice['dateEnd'] = '';
         $invoice['typeOfOperation'] = '10';

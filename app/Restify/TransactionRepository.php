@@ -9,6 +9,7 @@ use App\Models\Transaction;
 use App\Restify\Actions\SendBillingAction;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Fields\BelongsToMany;
+use Binaryk\LaravelRestify\Fields\HasOne;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -65,6 +66,7 @@ class TransactionRepository extends Repository
         return [
             'company' => BelongsTo::make('company'),
             'contact' => BelongsTo::make('contact'),
+            'billing' => HasOne::make('billing'),
             'items' => BelongsToMany::make('items', ItemRepository::class)->withPivot(
                 [
                     field('item_name')->rules(['required']),
