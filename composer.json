@@ -11,7 +11,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "lorisleiva/laravel-actions": "^2.8",
-        "spatie/laravel-permission": "^6.9",
+        "spatie/laravel-permission": "^6.10",
         "stenfrank/dian-dv": "^1.2"
     },
     "require-dev": {

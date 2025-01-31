@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'company_id',
+        'branch_id',
     ];
 
     /**
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function invoices()
     {
         return $this->hasMany(Invoice::class);
+    }
+
+    public function branch()
+    {
+       return $this->belongsTo(Branch::class);
     }
 }
