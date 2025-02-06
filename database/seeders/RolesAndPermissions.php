@@ -6,7 +6,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-
+use Illuminate\Support\Facades\DB;
 
 class RolesAndPermissions extends Seeder
 {
@@ -15,12 +15,12 @@ class RolesAndPermissions extends Seeder
      */
     public function run(): void
     {
-            // Crear permisos
-            $role = Role::create(['name' => 'writer']);
-            $permission = Permission::create(['name' => 'edit articles']);
+            // Creando roles
+            $owner = Role::create(['name' => 'owner']);
+            $cashier = Role::create(['name' => 'cashier']);
 
-            // Crear roles y asignar permisos
-           $role->givePermissionTo($permission);
-           $permission->assignRole($role);
+            Permission::create(['name' => 'view branches']);
+            Permission::create(['name' => 'view products']);
+
     }
 }
