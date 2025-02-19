@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class PriceList extends Model
 {
-    use HasFactory, HasCompany;
+    use HasCompany, HasFactory;
 
     protected $fillable = [
         'name',

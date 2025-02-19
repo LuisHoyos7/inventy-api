@@ -35,7 +35,7 @@ class TransactionRepository extends Repository
                 ->rules([
                     'required',
                     Rule::exists(Contact::class, 'id')
-                        ->where(fn($query) => $query->where('company_id', Auth::user()->company_id))
+                        ->where(fn ($query) => $query->where('company_id', Auth::user()->company_id)),
                 ])
                 ->messages([
                     'required' => 'El contacto es requerido',
@@ -57,7 +57,7 @@ class TransactionRepository extends Repository
                     Rule::enum(TransactionStatus::class),
                 ]),
             field('created_at'),
-            field('updated_at')
+            field('updated_at'),
         ];
     }
 

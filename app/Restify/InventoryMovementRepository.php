@@ -24,7 +24,7 @@ class InventoryMovementRepository extends Repository
                     'required',
                     'integer',
                 ]),
-            field('created_at')
+            field('created_at'),
         ];
     }
 
@@ -32,7 +32,7 @@ class InventoryMovementRepository extends Repository
     public static function allowedActions(): array
     {
         return [
-            'index'
+            'index',
         ];
     }
 

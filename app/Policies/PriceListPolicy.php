@@ -2,20 +2,20 @@
 
 namespace App\Policies;
 
+use App\Models\PriceList;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use App\Models\PriceList;
 
 class PriceListPolicy
 {
     use HandlesAuthorization;
 
-    public function allowRestify(User $user = null): bool
+    public function allowRestify(?User $user = null): bool
     {
         return true;
     }
 
-    public function show(User $user = null, PriceList $model): bool
+    public function show(?User $user, PriceList $model): bool
     {
         return true;
     }

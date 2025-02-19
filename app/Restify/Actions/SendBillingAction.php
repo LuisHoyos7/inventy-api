@@ -5,17 +5,15 @@ namespace App\Restify\Actions;
 use App\Actions\Aliaddo\BillingFactory;
 use App\Models\Billing;
 use App\Models\BillingResolution;
-use App\Services\AliaddoService;
 use Binaryk\LaravelRestify\Actions\Action;
 use Binaryk\LaravelRestify\Http\Requests\ActionRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class SendBillingAction extends Action
 {
-
     public function handle(ActionRequest $request, Collection $models): JsonResponse
     {
         // Obtener transaction
@@ -30,12 +28,12 @@ class SendBillingAction extends Action
             'Content-Type' => 'application/json',
         ])->post("{$baseUrl}/invoice/test", $billingData);
 
-        Log::info("resp status", ['status' => $response->status()]);
-        Log::info("resp data", ['data' => $response->json()]);
+        Log::info('resp status', ['status' => $response->status()]);
+        Log::info('resp data', ['data' => $response->json()]);
 
         if ($response->failed()) {
             return response()->json([
-                'message' => "No se ha podido crear el documento electrónico",
+                'message' => 'No se ha podido crear el documento electrónico',
                 'ok' => $response->successful(),
                 'http_status_code' => $response->status(),
                 'data' => $response->json(),

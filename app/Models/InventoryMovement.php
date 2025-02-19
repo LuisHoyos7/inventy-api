@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use App\Traits\HasCompany;
 use App\Enums\InventoryMovementType;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Traits\HasCompany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class InventoryMovement extends Model
 {
-    use HasFactory, HasCompany;
+    use HasCompany, HasFactory;
 
     protected $fillable = [
         'type',

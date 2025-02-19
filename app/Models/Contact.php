@@ -9,22 +9,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Contact extends Model
 {
-    use HasFactory, HasCompany;
+    use HasCompany, HasFactory;
 
     protected $fillable = [
-        "identification",
-        "fullname",
-        "email",
+        'identification',
+        'fullname',
+        'email',
         'is_customer',
-        "is_supplier",
-        "company_id"
+        'is_supplier',
+        'company_id',
     ];
 
     protected function casts(): array
     {
         return [
             'is_customer' => 'boolean',
-            "is_supplier" => 'boolean',
+            'is_supplier' => 'boolean',
         ];
     }
 

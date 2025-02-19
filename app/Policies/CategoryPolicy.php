@@ -10,12 +10,12 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function allowRestify(User $user = null): bool
+    public function allowRestify(?User $user = null): bool
     {
         return true;
     }
 
-    public function show(User $user = null, Category $model): bool
+    public function show(?User $user, Category $model): bool
     {
         return true;
     }

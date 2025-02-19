@@ -28,4 +28,9 @@ class UserRepository extends Repository
             'company' => BelongsTo::make('company'),
         ];
     }
+
+    public static function indexQuery(RestifyRequest $request, $query)
+    {
+        return $query->where('branch_id', $request->user()->branch_id);
+    }
 }

@@ -17,7 +17,7 @@ trait HasCompany
             });
 
             static::addGlobalScope('company_id', function (Builder $builder) {
-                return $builder->where($builder->getModel()->getTable() . '.company_id', Auth::user()->company_id);
+                return $builder->where($builder->getModel()->getTable().'.company_id', Auth::user()->company_id);
             });
         }
     }

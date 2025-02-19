@@ -10,6 +10,6 @@ class IdentificationType extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'code'
+        'name', 'code',
     ];
 }

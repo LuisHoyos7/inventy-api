@@ -18,7 +18,7 @@ class BillingResolution extends Model
         'current_consecutive',
         'start_date',
         'due_date',
-        'technical_key'
+        'technical_key',
     ];
 
     protected $appends = [
