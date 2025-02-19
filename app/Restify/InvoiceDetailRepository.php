@@ -3,9 +3,9 @@
 namespace App\Restify;
 
 use App\Models\InvoiceDetail;
+use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
 use Binaryk\LaravelRestify\Repositories\Repository;
-use Binaryk\LaravelRestify\Fields\BelongsTo;
 
 class InvoiceDetailRepository extends Repository
 {

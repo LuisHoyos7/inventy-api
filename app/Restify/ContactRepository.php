@@ -23,7 +23,7 @@ class ContactRepository extends Repository
                     'min:8',
                     'max:20',
                     Rule::unique('contacts')
-                        ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)),
+                        ->where(fn ($query) => $query->where('company_id', Auth::user()->company_id)),
                 ])
                 ->updatingRules(
                     [
@@ -31,9 +31,9 @@ class ContactRepository extends Repository
                         'min:8',
                         'max:20',
                         Rule::unique('contacts')
-                            ->where(fn($query) => $query
+                            ->where(fn ($query) => $query
                                 ->where('company_id', Auth::user()->company_id))
-                            ->ignore($this->id)
+                            ->ignore($this->id),
                     ]
                 ),
             field('fullname')

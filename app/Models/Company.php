@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Observers\CompanyObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 #[ObservedBy([CompanyObserver::class])]
@@ -14,7 +14,7 @@ class Company extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 
     public function users(): HasMany

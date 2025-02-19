@@ -3,20 +3,19 @@
 namespace App\Policies;
 
 use App\Models\Item;
-use Illuminate\Auth\Access\HandlesAuthorization;
-
 use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ItemPolicy
 {
     use HandlesAuthorization;
 
-    public function allowRestify(User $user = null): bool
+    public function allowRestify(?User $user = null): bool
     {
         return true;
     }
 
-    public function show(User $user = null, Item $model): bool
+    public function show(?User $user, Item $model): bool
     {
         return true;
     }

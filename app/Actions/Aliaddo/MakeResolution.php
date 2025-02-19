@@ -12,9 +12,9 @@ class MakeResolution
     public function handle(BillingResolution $resolution): array
     {
         return [
-            'resolutionKey' => $resolution->technical_key ?: "",
+            'resolutionKey' => $resolution->technical_key ?: '',
             'resolutionPrefix' => $resolution->prefix,
-            'resolutionNumber' => $resolution->code ?:  (string) $resolution->id,
+            'resolutionNumber' => $resolution->code ?: (string) $resolution->id,
             'resolutionRangeInitial' => $resolution->consecutive_start,
             'resolutionRangeFinal' => $resolution->consecutive_end,
             'resolutionValidFrom' => $resolution->start_date,

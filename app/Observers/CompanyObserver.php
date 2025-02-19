@@ -9,11 +9,11 @@ class CompanyObserver
     public function created(Company $company)
     {
         $company->branches()->create([
-            'name' => 'Principal'
+            'name' => 'Principal',
         ]);
 
         $company->priceLists()->create([
-            'name' => 'Principal'
+            'name' => 'Principal',
         ]);
     }
 }

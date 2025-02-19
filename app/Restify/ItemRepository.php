@@ -13,10 +13,10 @@ use Binaryk\LaravelRestify\Repositories\Repository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-
 class ItemRepository extends Repository
 {
     public static string $model = Item::class;
+
     public static array $search = ['name', 'description', 'barcode'];
 
     public static array $match = [
@@ -44,21 +44,21 @@ class ItemRepository extends Repository
                         'min:3',
                         'max:100',
                         Rule::unique('items')
-                            ->where(fn($query) => $query->where('company_id', Auth::user()->company_id)),
+                            ->where(fn ($query) => $query->where('company_id', Auth::user()->company_id)),
                     ]
                 )
                 ->updatingRules(
                     [
                         Rule::unique('items')
-                            ->where(fn($query) => $query
+                            ->where(fn ($query) => $query
                                 ->where('company_id', Auth::user()->company_id))
-                            ->ignore($this->id)
+                            ->ignore($this->id),
                     ]
                 ),
             field('type')
                 ->storingRules([
                     'required_without:img',
-                    Rule::enum(ItemType::class)
+                    Rule::enum(ItemType::class),
                 ])
                 ->messages([
                     'required' => 'El tipo es requerido.',
@@ -79,17 +79,17 @@ class ItemRepository extends Repository
                 ]),
             field('img')
                 ->image()
-                ->path($request->user()->company_id . '-item-images'),
+                ->path($request->user()->company_id.'-item-images'),
             field('category_id')
                 ->rules([
                     'nullable',
-                    Rule::exists(Category::class, 'id')
+                    Rule::exists(Category::class, 'id'),
                 ])
                 ->messages([
                     'required' => 'La categoría es requerida',
                     'exists' => 'La categoría escogida no es válida.',
                 ]),
-            field('stock')
+            field('stock'),
         ];
     }
 

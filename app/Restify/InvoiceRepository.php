@@ -3,10 +3,10 @@
 namespace App\Restify;
 
 use App\Models\Invoice;
-use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
-use Binaryk\LaravelRestify\Repositories\Repository;
 use Binaryk\LaravelRestify\Fields\BelongsTo;
 use Binaryk\LaravelRestify\Fields\HasMany;
+use Binaryk\LaravelRestify\Http\Requests\RestifyRequest;
+use Binaryk\LaravelRestify\Repositories\Repository;
 
 class InvoiceRepository extends Repository
 {
@@ -16,7 +16,6 @@ class InvoiceRepository extends Repository
     {
         return [
             id(),
-
 
             // Relación "muchos a uno" con el modelo InvoiceType
             BelongsTo::make('Invoice Type', 'invoiceType', InvoiceTypeRepository::class),

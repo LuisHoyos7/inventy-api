@@ -30,7 +30,7 @@ class UserRepository extends Repository
     }
 
     public static function indexQuery(RestifyRequest $request, $query)
-{
-    return $query->where('branch_id', $request->user()->branch_id);
-}
+    {
+        return $query->where('branch_id', $request->user()->branch_id);
+    }
 }

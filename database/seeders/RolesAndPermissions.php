@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
-use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
 
 class RolesAndPermissions extends Seeder
 {
@@ -15,12 +13,12 @@ class RolesAndPermissions extends Seeder
      */
     public function run(): void
     {
-            // Creando roles
-            $owner = Role::create(['name' => 'owner']);
-            $cashier = Role::create(['name' => 'cashier']);
+        // Creando roles
+        $owner = Role::create(['name' => 'owner']);
+        $cashier = Role::create(['name' => 'cashier']);
 
-            Permission::create(['name' => 'view branches']);
-            Permission::create(['name' => 'view products']);
+        Permission::create(['name' => 'view branches']);
+        Permission::create(['name' => 'view products']);
 
     }
 }

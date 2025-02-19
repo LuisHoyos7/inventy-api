@@ -1,13 +1,13 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Restify\Auth\ForgotPasswordController;
+use App\Http\Controllers\Restify\Auth\LoginController;
 use App\Http\Controllers\Restify\Auth\LogoutController;
 use App\Http\Controllers\Restify\Auth\RegisterController;
 use App\Http\Controllers\Restify\Auth\ResetPasswordController;
 use App\Http\Controllers\Restify\Auth\VerifyController;
-use App\Http\Controllers\Restify\Auth\ForgotPasswordController;
-use App\Http\Controllers\Restify\Auth\LoginController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -36,5 +36,3 @@ Route::post('resetPassword', ResetPasswordController::class)
 Route::post('verify/{id}/{hash}', VerifyController::class)
     ->middleware('throttle:6,1')
     ->name('restify.verify');
-
-

@@ -10,14 +10,13 @@ class InventoryMovementPolicy
 {
     use HandlesAuthorization;
 
-    public function allowRestify(User $user = null): bool
+    public function allowRestify(?User $user = null): bool
     {
         return true;
     }
 
-    public function show(User $user = null, InventoryMovement $model): bool
+    public function show(?User $user, InventoryMovement $model): bool
     {
         return true;
     }
-    
 }

@@ -10,12 +10,12 @@ class ContactPolicy
 {
     use HandlesAuthorization;
 
-    public function allowRestify(User $user = null): bool
+    public function allowRestify(?User $user = null): bool
     {
         return true;
     }
 
-    public function show(User $user = null, Contact $model): bool
+    public function show(?User $user, Contact $model): bool
     {
         return true;
     }
