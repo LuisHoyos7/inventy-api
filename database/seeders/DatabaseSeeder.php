@@ -14,11 +14,5 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolesAndPermissions::class);
         $this->call(CitiesTableSeeder::class);
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => \Illuminate\Support\Facades\Hash::make('password'),
-        ]);
     }
 }
