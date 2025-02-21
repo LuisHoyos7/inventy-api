@@ -27,7 +27,7 @@ class Item extends Model
         'stock',
     ];
 
-    //protected $with = ['priceLists'];
+    // protected $with = ['priceLists'];
 
     /**
      * Get the attributes that should be cast.

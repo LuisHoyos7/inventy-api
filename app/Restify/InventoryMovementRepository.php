@@ -28,7 +28,7 @@ class InventoryMovementRepository extends Repository
         ];
     }
 
-    //method index
+    // method index
     public static function allowedActions(): array
     {
         return [
@@ -36,7 +36,7 @@ class InventoryMovementRepository extends Repository
         ];
     }
 
-    //relationships
+    // relationships
     public static function related(): array
     {
         return [
