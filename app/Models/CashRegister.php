@@ -7,22 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Branch extends Model
+class CashRegister extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'company_id',
+        'branch_id'
     ];
 
-    public function company(): BelongsTo
+    public function branch(): BelongsTo
     {
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Branch::class);
     }
 
-    public function cashRegisters(): HasMany
+    public function cashMovements(): HasMany
     {
-        return $this->hasMany(CashRegister::class);
+        return $this->hasMany(CashMovement::class);
     }
 }
