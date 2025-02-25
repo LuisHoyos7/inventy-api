@@ -8,12 +8,16 @@ class CompanyObserver
 {
     public function created(Company $company)
     {
-        $company->branches()->create([
+        $branch = $company->branches()->create([
             'name' => 'Principal'
         ]);
 
         $company->priceLists()->create([
             'name' => 'Principal'
+        ]);
+
+        $branch->cashRegisters()->create([
+            'name' => 'Caja principal'
         ]);
     }
 }
