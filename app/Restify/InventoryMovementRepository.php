@@ -24,19 +24,19 @@ class InventoryMovementRepository extends Repository
                     'required',
                     'integer',
                 ]),
-            field('created_at')
+            field('created_at'),
         ];
     }
 
-    //method index
+    // method index
     public static function allowedActions(): array
     {
         return [
-            'index'
+            'index',
         ];
     }
 
-    //relationships
+    // relationships
     public static function related(): array
     {
         return [

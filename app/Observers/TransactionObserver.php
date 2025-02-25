@@ -5,12 +5,10 @@ namespace App\Observers;
 use App\Enums\InventoryMovementType;
 use App\Enums\TransactionStatus;
 use App\Enums\TransactionsType;
-use App\Models\InventoryMovement;
 use App\Models\Transaction;
 
 class TransactionObserver
 {
-
     /**
      * Handle the Transaction "updated" event.
      */

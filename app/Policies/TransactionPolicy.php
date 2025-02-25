@@ -12,12 +12,12 @@ class TransactionPolicy
 {
     use HandlesAuthorization;
 
-    public function allowRestify(User $user = null): bool
+    public function allowRestify(?User $user = null): bool
     {
         return true;
     }
 
-    public function show(User $user = null, Transaction $model): bool
+    public function show(?User $user, Transaction $model): bool
     {
         return true;
     }

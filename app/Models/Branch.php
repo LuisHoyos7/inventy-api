@@ -13,7 +13,7 @@ class Branch extends Model
 
     protected $fillable = [
         'name',
-        'company_id'
+        'company_id',
     ];
 
     public function company(): BelongsTo

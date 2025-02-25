@@ -2,8 +2,8 @@
 
 namespace App\Actions\Aliaddo;
 
-use Lorisleiva\Actions\Concerns\AsAction;
 use Illuminate\Support\Str;
+use Lorisleiva\Actions\Concerns\AsAction;
 
 class MakeBillingDetails
 {
@@ -14,17 +14,17 @@ class MakeBillingDetails
         $details = [];
         foreach ($items as $item) {
             $details[] = [
-                'standardType' => "",
-                'standardCode' => "",
+                'standardType' => '',
+                'standardCode' => '',
                 'itemCode' => $item->barcode,
                 'itemName' => Str::limit(value: $item->name, limit: 200, end: ''),
-                'itemModel' => "",
+                'itemModel' => '',
                 'description' => $item->description,
-                'brandName' => "",
-                'itemCodeSupplier' => "",
+                'brandName' => '',
+                'itemCodeSupplier' => '',
                 'isPresent' => false,
-                'unitMeasurementCode' => "EA",
-                'unitMeasurementName' => "",
+                'unitMeasurementCode' => 'EA',
+                'unitMeasurementName' => '',
                 'price' => (float) $item->pivot->price,
                 'quantity' => (float) $item->pivot->quantity,
                 'discounts' => [],

@@ -12,22 +12,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Item extends Model
 {
-    use HasFactory, HasCompany;
+    use HasCompany, HasFactory;
 
     protected $fillable = [
-        "name",
-        "description",
-        "barcode",
+        'name',
+        'description',
+        'barcode',
         'type',
-        "initial_cost",
-        "category_id",
-        "company_id",
+        'initial_cost',
+        'category_id',
+        'company_id',
         'img',
         'profit',
         'stock',
     ];
 
-    //protected $with = ['priceLists'];
+    // protected $with = ['priceLists'];
 
     /**
      * Get the attributes that should be cast.

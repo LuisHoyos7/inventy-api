@@ -13,7 +13,7 @@ class CompanyObserver
         ]);
 
         $company->priceLists()->create([
-            'name' => 'Principal'
+            'name' => 'Principal',
         ]);
 
         $branch->cashRegisters()->create([
